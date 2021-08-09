@@ -1,17 +1,17 @@
-import { useUserPreferences } from '../../providers/UserPreferences'
+import { useUserPreferences } from '../../../providers/UserPreferences'
 import React, { ReactElement, useEffect, useState } from 'react'
-import Table from '../atoms/Table'
+import Table from '../../atoms/Table'
 import { DDO, Logger, BestPrice } from '@oceanprotocol/lib'
-import Price from '../atoms/Price'
-import Tooltip from '../atoms/Tooltip'
-import AssetTitle from './AssetListTitle'
+import Price from '../../atoms/Price'
+import Tooltip from '../../atoms/Tooltip'
+import AssetTitle from '../../molecules/AssetListTitle'
 import {
   queryMetadata,
   transformChainIdsListToQuery
-} from '../../utils/aquarius'
-import { getAssetsBestPrices, AssetListPrices } from '../../utils/subgraph'
+} from '../../../utils/aquarius'
+import { getAssetsBestPrices, AssetListPrices } from '../../../utils/subgraph'
 import axios, { CancelToken } from 'axios'
-import { useSiteMetadata } from '../../hooks/useSiteMetadata'
+import { useSiteMetadata } from '../../../hooks/useSiteMetadata'
 
 async function getAssetsBookmarked(
   bookmarks: string[],
@@ -72,7 +72,15 @@ const columns = [
     },
     maxWidth: '10rem'
   },
-
+  {
+    name: 'Asset Type',
+    selector: function getAssetRow(row: AssetListPrices) {
+      const { attributes } = row.ddo.findServiceByType('metadata')
+      return <AssetTitle title={attributes.main.type} ddo={row.ddo} />
+    },
+    maxWidth: '45rem',
+    grow: 1
+  },
   {
     name: 'Price',
     selector: function getAssetRow(row: AssetListPrices) {

@@ -25,16 +25,19 @@ const AssetTeaser: React.FC<AssetTeaserProps> = ({
   const isCompute = Boolean(ddo?.findServiceByType('compute'))
   const accessType = isCompute ? 'compute' : 'access'
   const { owner } = ddo.publicKey[0]
-
+  console.log(ddo.id)
   return (
     <article className={`${styles.teaser} ${styles[type]}`}>
       <Link to={`/asset/${ddo.id}`} className={styles.link}>
         <header className={styles.header}>
+          {/* <h2>Where am I No. 1</h2> */}
           <div className={styles.symbol}>{dataTokenInfo?.symbol}</div>
           <Dotdotdot clamp={3}>
             <h1 className={styles.title}>{name}</h1>
           </Dotdotdot>
+          {/* <h2>Where am I No. 2</h2> */}
           <Publisher account={owner} minimal className={styles.publisher} />
+          {/* <h2>Where am I No. 3</h2> */}
         </header>
 
         <AssetType

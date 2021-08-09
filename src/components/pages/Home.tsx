@@ -109,6 +109,7 @@ function SectionQueryResult({
   return (
     <section className={styles.section}>
       <h3>{title}</h3>
+      {/* <h1>boooooooooooooo</h1> */}
       <AssetList
         assets={result?.results}
         showPagination={false}
@@ -134,6 +135,7 @@ export default function HomePage(): ReactElement {
       <>
         <section className={styles.section}>
           <h3>Bookmarks</h3>
+          {/* <h1>MUUUUUUU</h1> */}
           <Bookmarks />
         </section>
 

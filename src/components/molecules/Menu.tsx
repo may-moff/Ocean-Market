@@ -19,6 +19,7 @@ declare type MenuItem = {
 
 function MenuLink({ item }: { item: MenuItem }) {
   const location = useLocation()
+  console.log(location)
 
   const classes =
     location?.pathname === item.link

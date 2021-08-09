@@ -17,6 +17,7 @@ export default function AssetListTitle({
   title?: string
 }): ReactElement {
   const { appConfig } = useSiteMetadata()
+  console.log(appConfig)
   const [assetTitle, setAssetTitle] = useState<string>(title)
 
   useEffect(() => {
@@ -42,8 +43,10 @@ export default function AssetListTitle({
   }, [assetTitle, appConfig.metadataCacheUri, ddo, did, title])
 
   return (
-    <h3 className={styles.title}>
-      <Link to={`/asset/${did || ddo.id}`}>{assetTitle}</Link>
-    </h3>
+    <>
+      <h3 className={styles.title}>
+        <Link to={`/asset/${did || ddo.id}`}>{assetTitle}</Link>
+      </h3>
+    </>
   )
 }
